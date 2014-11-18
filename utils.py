@@ -1,4 +1,5 @@
 import random
+import re
 
 def arduino_map(x, in_min, in_max, out_min, out_max):
 	return (x - in_min) * (out_max - out_min) // (in_max - in_min) + out_min
@@ -11,7 +12,20 @@ def centerRect(img_size, target_size):
 	return (left, upper, right, lower)
 
 def formatSentence(sentence):
+
 	sentence = sentence.lower()
+	
+	sent = ''
+	#
+	reg = re.compile("(\s+)([A-Za-z\s]+\.)")
+	result = reg.findall(sentence)
+	if len(result) > 0:	
+		for r in result:
+			sent += r[0]+r[1].capitalize()
+		return sent
+	#
+	return sentence
+
 
 
 def correctedWord(word, d):
@@ -21,14 +35,14 @@ def correctedWord(word, d):
 	else:
 		return word
 
-def getDelimiter(sentenceChance, newLineChance, chapterChance):
+def getDelimiter(pointChance, newLineChance, chapterChance):
 	delimiter = ' '
 	
-	if random.random() < sentenceChance:
+	if random.random() < pointChance:
 		delimiter = '. '
-		if random.random() <= newLineChance:
-			delimiter = '\n'
-			if random.random() <= chapterChance:
+		if random.random() < newLineChance:
+			delimiter += '\n'
+			if random.random() < chapterChance:
 				delimiter += '\n'
 
 	return delimiter

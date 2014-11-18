@@ -14,7 +14,7 @@ def main(image):
 	img = imgSrc.crop(rect)
 	img = img.convert('CMYK')
 
-	size = img.size #Get the width and hight of the image for iterating over
+	size = img.size #Get the width and height of the image for iterating over
 	print img.size
 
 	#generate novel by iterating over pixels
@@ -30,8 +30,8 @@ def main(image):
 			output += utils.correctedWord(word, d)
 			output += utils.getDelimiter(0.1, 0.4, 0.3)
 			
-			#ouput = utils.formatSentence(output)
-
+		
+		output = utils.formatSentence(output)
 		print "loop ", x ," of ", size[0]
 		novel.write(output)
 		output = ''
