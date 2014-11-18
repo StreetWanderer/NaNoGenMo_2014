@@ -1,5 +1,6 @@
 import random
 import re
+import spell
 
 def arduino_map(x, in_min, in_max, out_min, out_max):
 	return (x - in_min) * (out_max - out_min) // (in_max - in_min) + out_min
@@ -29,11 +30,13 @@ def formatSentence(sentence):
 
 
 def correctedWord(word, d):
-	suggest = d.suggest(word)
-	if len(suggest) > 0:
-		return random.choice(suggest)
-	else:
-		return word
+	#suggest = d.suggest(word)
+	#if len(suggest) > 0:
+	#	return random.choice(suggest)
+	#else:
+	#	return word
+	ret = random.sample(spell.correct(word), 1)
+	return ret[0]
 
 def getDelimiter(pointChance, newLineChance, chapterChance):
 	delimiter = ' '

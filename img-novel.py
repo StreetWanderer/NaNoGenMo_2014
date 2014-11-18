@@ -2,11 +2,11 @@ from PIL import Image
 import enchant
 import utils
 
-def main(image):
+def main(image, dest_file, language):
 	#init all
 	output = ''
-	d = enchant.Dict("en_US")
-	novel = open('novel.txt', 'wb+')
+	d = enchant.Dict(language)
+	novel = open(dest_file, 'wb+')
 	imgSrc = Image.open(image)
 	#get center of image
 	rect = utils.centerRect(imgSrc.size, (224, 224))
@@ -30,7 +30,6 @@ def main(image):
 			output += utils.correctedWord(word, d)
 			output += utils.getDelimiter(0.1, 0.4, 0.3)
 			
-		
 		output = utils.formatSentence(output)
 		print "loop ", x ," of ", size[0]
 		novel.write(output)
@@ -41,4 +40,4 @@ def main(image):
 
 
 
-main('nyan_cat.jpg')
+main('nyan_cat.jpg', 'novel.txt', 'en_US')
