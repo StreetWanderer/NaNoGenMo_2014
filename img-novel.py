@@ -37,7 +37,7 @@ def main(image):
 		output = ''
 
 	novel.close()
-	return true;
+	return True;
 
 
 
