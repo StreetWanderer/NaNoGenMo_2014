@@ -1,4 +1,4 @@
-NaNoGenMo_2014
+NaNoGenMo 2014
 ==============
 A small tentative at novel generation using an image at the novel inspiration.
 
